@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "S-Core Dream 4 Regular", serif;
+}
+
+body {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+#account {
+    float: right
+
+}
+
+
+.title {
+
+    text-align: center;
+    margin: 30px auto 30px;
+}
+
+.add_ingredient_input_div{
+
+    width: 400px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+
+.add_ingredient_input {
+    width: 300px;
+    height: 100%;
+    border: none;
+}
+
+.add_ingredient_button{
+    width: 80px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.24);
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+.add_ingredient_input_div{
+
+    border: 1px solid;
+}
+
+.add_ingredient_preview_div{
+    width: 400px;
+    height: 100px;
+    margin: 0 auto;
+    border: 1px solid;
+}
+
+.viewer_btn{
+    width:400px;
+    height:30px;
+    margin: 0 auto;
+}
