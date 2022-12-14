@@ -10,7 +10,7 @@
 <style>
     h1{
         text-align : center;
-        border:5px black;
+        border:5px black solid;
     }
     input {
 
