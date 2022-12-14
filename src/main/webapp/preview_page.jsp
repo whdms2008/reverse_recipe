@@ -8,7 +8,7 @@
 <style>
     h1{
         text-align : center;
-        border:5px solid #000000;
+        border:5px black;
     }
 
 </style>
