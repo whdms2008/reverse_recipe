@@ -2,6 +2,7 @@ package com.example.reverse_recipe;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -25,20 +26,36 @@ import javax.servlet.annotation.*;
 //   7    RCP_PARTS_DTLS  STRING[선택]      재료정보            추가파라미터
 //   8    CHNG_DT         STRING[선택]      변경일자(YYYYMMDD)  변경일자 기준 이후 자료를 출력한다, 정수입력 : 20170101 (2017년 1월1일 )
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
+@WebServlet(name = "add_ingredent", value = "/add_ingredent")
 public class Add_Ingredient extends HttpServlet {
-    private String[] ingredient;
-    private final String key = "93015fe6a0fa49d9a7da";
-    private final String url = "http://openapi.foodsafetykorea.go.kr/api/keyId/serviceId/dataType/startIdx/endIdx";
+
     public void init() {
+        System.out.println("test");
+        final String key = "93015fe6a0fa49d9a7da";
+        final String serviceId = "COOKRCP01";
+        final String dataType = "json";
+        final String startIdx = "1";
+        final String endIdx = "2";
         try{
-            URL url = new URL("http://openapi.foodsafetykorea.go.kr/api/"+key+"/");
+            URL url = new URL("http://openapi.foodsafetykorea.go.kr/api/"+key+"/"+serviceId+"/"+dataType+"/"+startIdx+"/"+endIdx);
+            // http://openapi.foodsafetykorea.go.kr/api/93015fe6a0fa49d9a7da/COOOKRCP01/json/1/10
+            BufferedReader bf;
+            bf = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
+            String result = bf.readLine();
+            System.out.println(result);
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-
+        System.out.println("된당");
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        out.println("<h1> 됐어!</h1>");
+        out.println("</body></html>");
     }
 
     public void destroy() {
