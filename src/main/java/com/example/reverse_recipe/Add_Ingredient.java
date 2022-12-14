@@ -4,22 +4,20 @@ import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
+// 인증키 : 93015fe6a0fa49d9a7da
+
+
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class HelloServlet extends HttpServlet {
-    private String message;
+public class Add_Ingredient extends HttpServlet {
+    private String[] ingredient;
 
     public void init() {
-        message = "Hello World!2";
+
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
 
-        // Hello
-//        PrintWriter out = response.getWriter();
-//        out.println("<html><body>");
-//        out.println("<h1>" + message + "</h1>");
-//        out.println("</body></html>");
+
     }
 
     public void destroy() {

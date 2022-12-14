@@ -6,7 +6,7 @@
 }
 
 * {
-    font-family: "S-Core Dream 4 Regular", serif;
+    font-family: "S-CoreDream-3Light", serif;
 }
 
 body {
@@ -27,42 +27,48 @@ body {
     margin: 30px auto 30px;
 }
 
-.add_ingredient_input_div{
+#main_wrap{
+    display:flex;
+    flex-direction: column;
+    border: solid 1px;
+    margin: 0 auto;
+}
 
-    width: 400px;
+
+.add_ingredient_input_div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 99.7%;
     height: 50px;
     margin: 0 auto;
 }
 
 
-.add_ingredient_input {
-    width: 300px;
-    height: 100%;
+#add_ingredient_input {
+    width: 70%;
     border: none;
+    text-align: center;
 }
 
-.add_ingredient_button{
-    width: 80px;
+#add_ingredient_button{
+    width: 30%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.24);
     border: none;
     padding: 0;
     margin: 0;
 }
-.add_ingredient_input_div{
 
-    border: 1px solid;
-}
-
-.add_ingredient_preview_div{
-    width: 400px;
-    height: 100px;
+#add_ingredient_preview_div{
+    width: 600px;
+    min-height: 150px;
     margin: 0 auto;
     border: 1px solid;
 }
 
 .viewer_btn{
-    width:400px;
+    width:600px;
     height:30px;
     margin: 0 auto;
 }
