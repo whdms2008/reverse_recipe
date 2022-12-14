@@ -1,0 +1,36 @@
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<h1>리뷰작성</h1>
+<style>
+    h1{
+        text-align : center;
+        border:5px solid #000000;
+    }
+    textarea{
+        width:100%;
+        height: 50%;
+        font-size: 15px;
+    }
+    input{
+        width:100%;
+        height: 10%;
+        font-size: 20px;
+    }
+    button{
+        float:right;
+        width:100px;
+        height: 50px;
+    }
+</style>
+<INPUT type="text" name="menu">
+<TEXTAREA placeholder="내용을 입력해주세요" name="text"></TEXTAREA>
+<button onclick="">리뷰등록</button>
+<button onclick="">뒤로가기</button>
+
+</body>
+</html>
