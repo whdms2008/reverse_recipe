@@ -1,10 +1,16 @@
 package com.example.reverse_recipe;
 
+
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
 
 // 인증키 : 93015fe6a0fa49d9a7da
 // 요청주소 : http://openapi.foodsafetykorea.go.kr/api/keyId/serviceId/dataType/startIdx/endIdx
@@ -28,34 +34,44 @@ import javax.servlet.annotation.*;
 
 @WebServlet(name = "add_ingredent", value = "/add_ingredent")
 public class Add_Ingredient extends HttpServlet {
-
+    String result;
+    JSONArray jsonarry;
     public void init() {
         System.out.println("test");
         final String key = "93015fe6a0fa49d9a7da";
         final String serviceId = "COOKRCP01";
         final String dataType = "json";
         final String startIdx = "1";
-        final String endIdx = "2";
-        try{
-            URL url = new URL("http://openapi.foodsafetykorea.go.kr/api/"+key+"/"+serviceId+"/"+dataType+"/"+startIdx+"/"+endIdx);
-            // http://openapi.foodsafetykorea.go.kr/api/93015fe6a0fa49d9a7da/COOOKRCP01/json/1/10
+        final String endIdx = "10";
+        try {
+            URL url = new URL("http://openapi.foodsafetykorea.go.kr/api/" + key + "/" + serviceId + "/" + dataType + "/" + startIdx + "/" + endIdx);
+            // http://openapi.foodsafetykorea.go.kr/api/93015fe6a0fa49d9a7da/COOKRCP01/json/1/10
             BufferedReader bf;
             bf = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
-            String result = bf.readLine();
-            System.out.println(result);
-
-        }catch (Exception e){
+            result = bf.readLine();
+            JSONParser jsonParser = new JSONParser();
+            JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
+            JSONObject coocks = (JSONObject)jsonObject.get("COOKRCP01");
+            jsonarry = (JSONArray)coocks.get("row");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+        response.setContentType("text/html;charset=UTF-8");
         System.out.println("된당");
+        JSONParser jsonParser = new JSONParser();
         PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1> 됐어!</h1>");
-        out.println("</body></html>");
+        for (Object o : jsonarry) {
+            JSONObject jsonObject = new JSONObject((Map) o);
+            out.println("메뉴 이름 : " + jsonObject.get("RCP_NM"));
+            out.println("<br>");
+            out.println("재료 : " + jsonObject.get("RCP_PARTS_DTLS"));
+            out.println("<br>");
+            out.println("조리방법 : " + jsonObject.get("RCP_WAY2"));
+            out.println("<hr><br>");
+        }
     }
 
     public void destroy() {
