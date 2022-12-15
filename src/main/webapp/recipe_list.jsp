@@ -30,9 +30,6 @@
             border: 5px black solid;
         }
 
-        .output {
-        }
-
         .recipe_img {
             width: 170px;
             margin: 20px;
@@ -46,6 +43,10 @@
             align-items: center;
             margin: 10px;
             border: solid 1px;
+        }
+        .recipe:hover{
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.06);
         }
 
         .ok {
@@ -83,7 +84,7 @@
             font-size: 100px;
             margin: 0 60px 0 0;
         }
-
+            
     </style>
     <h1 id="title">거꾸로 레시피</h1>
 </head>
