@@ -7,6 +7,7 @@
 <%@ page import="org.json.simple.JSONObject" %>
 <%@ page import="org.json.simple.JSONArray" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="org.json.simple.parser.ParseException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -44,7 +45,8 @@
             margin: 10px;
             border: solid 1px;
         }
-        .recipe:hover{
+
+        .recipe:hover {
             cursor: pointer;
             background: rgba(0, 0, 0, 0.06);
         }
@@ -84,7 +86,7 @@
             font-size: 100px;
             margin: 0 60px 0 0;
         }
-            
+
     </style>
     <h1 id="title">거꾸로 레시피</h1>
 </head>
@@ -121,91 +123,98 @@
 
         request.setCharacterEncoding("utf-8");
         System.out.println("test");
-        String[] ingredients = request.getParameterValues("ingredient");
-        System.out.println(Arrays.toString(ingredients));
-        for (String ingredient : ingredients) {
-            System.out.println(ingredient);
-        }
         final String key = "93015fe6a0fa49d9a7da";
         final String serviceId = "COOKRCP01";
         final String dataType = "json";
         final String startIdx = "1";
-        final String endIdx = "10";
+        final String endIdx = "30";
         final String RCP_NM = ""; // 메뉴이름
         final String[] RCP_PARTS_DTLS = request.getParameterValues("ingredient");
-
+        int all_recipe = 0;
+        StringBuilder url_add = new StringBuilder();
+        URL url;
         try {
-            StringBuilder url_add = new StringBuilder();
             // 재료정보
             for (String ing : RCP_PARTS_DTLS) {
                 url_add.append("RCP_PARTS_DTLS=").append(ing);
                 url_add.append("&");
             }
-            URL url = new URL("http://openapi.foodsafetykorea.go.kr/api/" + key + "/" + serviceId + "/" + dataType + "/" + startIdx + "/" + endIdx + "/"+ url_add);
+            url = new URL("http://openapi.foodsafetykorea.go.kr/api/" + key + "/" + serviceId + "/" + dataType + "/" + startIdx + "/" + endIdx + "/" + url_add);
             System.out.println(url);
-            // http://openapi.foodsafetykorea.go.kr/api/93015fe6a0fa49d9a7da/COOKRCP01/json/1/10
-            BufferedReader bf;
-            bf = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
-            result = bf.readLine();
-            JSONParser jsonParser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(result);
-            JSONObject coocks = (JSONObject) jsonObject.get("COOKRCP01");
-            jsonarry = (JSONArray) coocks.get("row");
         } catch (Exception e) {
-            e.printStackTrace();
+            url = new URL("http://openapi.foodsafetykorea.go.kr/api/" + key + "/" + serviceId + "/" + dataType + "/" + startIdx + "/" + endIdx);
+            System.out.println(url);
         }
+        // http://openapi.foodsafetykorea.go.kr/api/93015fe6a0fa49d9a7da/COOKRCP01/json/1/10
+        BufferedReader bf;
+        bf = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8));
+        result = bf.readLine();
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject;
+        try {
+            jsonObject = (JSONObject) jsonParser.parse(result);
+        } catch (ParseException e) {
+            System.out.println(result);
+            throw new RuntimeException(e);
+        }
+        JSONObject coocks = (JSONObject) jsonObject.get("COOKRCP01");
+        jsonarry = (JSONArray) coocks.get("row");
         for (Object o : jsonarry) {
             int ok_cnt = 0;
             int no_cnt = 0;
             jsonObject2 = new JSONObject((Map) o);
     %>
+    <form action="recipe_view.jsp" onclick="this.submit()">
 
-    <div class="recipe">
-        <img class="recipe_img" src=<%=jsonObject2.get("ATT_FILE_NO_MK")%>>
-        <div class="recipe_data">
-            <p class="recipe_name"><%= jsonObject2.get("RCP_NM")%>
-            </p>
-        </div>
-        <div class="recipe_ingredient">
-            <p>재료 :
-                <%
-                    String strs = jsonObject2.get("RCP_PARTS_DTLS").toString().replace("\n",",");
-                    for (String s : strs.split(",")) {
-                %>
-                <%
-                    int chk = 0;
-                    for (String sd : RCP_PARTS_DTLS) {
-                        if (s.contains(sd)) {
-                            chk = 1;
-                            break;
+        <input name="food_name" type="text" style="display: none" value='<%= jsonObject2.get("RCP_NM").toString().replace(" ","_")%>'>
+        <div class="recipe">
+            <img class="recipe_img" src=<%=jsonObject2.get("ATT_FILE_NO_MK")%>>
+            <div class="recipe_data">
+                <p class="recipe_name"><%= jsonObject2.get("RCP_NM")%>
+                </p>
+            </div>
+            <div class="recipe_ingredient">
+                <p>재료 :
+                    <%
+                        String strs = jsonObject2.get("RCP_PARTS_DTLS").toString().replace("\n", ",");
+                        for (String s : strs.split(",")) {
+                    %>
+                    <%
+                        int chk = 0;
+                        try {
+                            for (String sd : RCP_PARTS_DTLS) {
+                                if (s.contains(sd)) {
+                                    chk = 1;
+                                    break;
+                                }
+                            }
+                        } catch (Exception ignore) {
                         }
-                    }
-                %>
+                    %>
 
-                <% if (chk == 1) {
-                    System.out.println("있음! : " + s);
-                    ok_cnt += 1;
-                %>
+                    <% if (chk == 1) {
+                        ok_cnt += 1;
+                    %>
 
-                <span class="ok"><%=s%></span>,
-                <%
-                } else if(!s.isEmpty()){
-                    System.out.println("없음! : " + s);
-                    no_cnt += 1;
-                %>
-                <span class="no"><%=s%></span>,
+                    <span class="ok"><%=s%></span>,
+                    <%
+                    } else if (!s.isEmpty()) {
+                        no_cnt += 1;
+                    %>
+                    <span class="no"><%=s%></span>,
 
-                <%
+                    <%
+                            }
                         }
-                    }
-                %>
-            </p>
+                    %>
+                </p>
 
-            <p>재료 <%=ok_cnt%>/<%=ok_cnt + no_cnt%> 개 보유중</p>
-            <span class="recipe_cook_type">조리방법 : <%=jsonObject2.get("RCP_WAY2")%></span>
+                <p>재료 <%=ok_cnt%>/<%=ok_cnt + no_cnt%> 개 보유중</p>
+                <span class="recipe_cook_type">조리방법 : <%=jsonObject2.get("RCP_WAY2")%></span>
+            </div>
+            <span class="recipe_favorite">☆</span>
         </div>
-        <span class="recipe_favorite">☆</span>
-    </div>
+    </form>
 
     <%
         }
