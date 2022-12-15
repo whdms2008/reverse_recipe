@@ -61,6 +61,7 @@
         <input type="submit" value="가즈아!!">
     </form>
     <a href="add_ingredent">Hello Servlet</a>
+    <input type="button" onclick="location.href='recipe_list.jsp'"/>
 </div>
 </body>
 </html>

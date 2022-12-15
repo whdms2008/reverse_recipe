@@ -70,6 +70,7 @@ public class Add_Ingredient extends HttpServlet {
             out.println("재료 : " + jsonObject.get("RCP_PARTS_DTLS"));
             out.println("<br>");
             out.println("조리방법 : " + jsonObject.get("RCP_WAY2"));
+            out.println("요리 이미지 : <img src='"+jsonObject.get("ATT_FILE_NO_MK")+"'/>");
             out.println("<hr><br>");
         }
     }
