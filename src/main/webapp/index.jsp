@@ -11,13 +11,18 @@
             if (document.getElementById("add_ingredient_preview_div").childElementCount < 10) {
                 if (document.getElementById("add_ingredient_input").value !== "") {
 
-                    let ingredient = document.createElement("button");
+                    let ingredient = document.createElement("input");
                     let preivew = document.getElementById("add_ingredient_preview_div");
                     let value = document.getElementById("add_ingredient_input");
                     ingredient.setAttribute("class", "ingredient");
-                    ingredient.textContent = value.value;
-                    ingredient.style.margin = "10px";
-                    ingredient.style.padding = "10px";
+                    ingredient.name = "ingredient";
+                    ingredient.type = "text";
+                    ingredient.value = value.value;
+                    // ingredient.style.textAlign = "center";
+                    // ingredient.style.margin = "10px";
+                    // ingredient.style.padding = "10px";
+                    // ingredient.width = "60px";
+                    // ingredient.disabled = true;
                     value.value = "";
                     ingredient.onclick = function () {
                         this.remove();
@@ -53,15 +58,12 @@
         <input id="add_ingredient_input" type="text" placeholder="재료를 입력하세요">
         <input id="add_ingredient_button" type="button" onclick='add_ingredient()' value="+">
     </div>
-    <div id="add_ingredient_preview_div">
+    <form action="recipe_list.jsp">
+        <div id="add_ingredient_preview_div">
 
-    </div>
-    <input class="viewer_btn" type="button"  value="조합된 레시피 보러가기">
-    <form action="add_ingredent">
-        <input type="submit" value="가즈아!!">
+        </div>
+        <input class="viewer_btn" type="submit" value="조합된 레시피 보러가기"/>
     </form>
-    <a href="add_ingredent">Hello Servlet</a>
-    <input type="button" onclick="location.href='recipe_list.jsp'"/>
 </div>
 </body>
 </html>

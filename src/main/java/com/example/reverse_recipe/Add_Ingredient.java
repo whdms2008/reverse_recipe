@@ -42,7 +42,7 @@ public class Add_Ingredient extends HttpServlet {
         final String serviceId = "COOKRCP01";
         final String dataType = "json";
         final String startIdx = "1";
-        final String endIdx = "10";
+        final String endIdx = "20";
         try {
             URL url = new URL("http://openapi.foodsafetykorea.go.kr/api/" + key + "/" + serviceId + "/" + dataType + "/" + startIdx + "/" + endIdx);
             // http://openapi.foodsafetykorea.go.kr/api/93015fe6a0fa49d9a7da/COOKRCP01/json/1/10
@@ -73,6 +73,7 @@ public class Add_Ingredient extends HttpServlet {
             out.println("요리 이미지 : <img src='"+jsonObject.get("ATT_FILE_NO_MK")+"'/>");
             out.println("<hr><br>");
         }
+
     }
 
     public void destroy() {
