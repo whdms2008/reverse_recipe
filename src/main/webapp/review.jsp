@@ -39,8 +39,12 @@
 </style>
 <INPUT type="text" name="menu">
 <TEXTAREA placeholder="내용을 입력해주세요" name="text"></TEXTAREA>
-<button onclick="">리뷰등록</button>
-<button onclick="">뒤로가기</button>
+<button onclick="register()">리뷰등록</button>
 
+<button onclick="location.href='index.jsp'">뒤로가기</button>
+<script>
+   function register(){
+        alert('리뷰가 등록되었습니다');
+}</script>
 </body>
 </html>
