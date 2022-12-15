@@ -1,8 +1,22 @@
-
+<%@ page import="javax.naming.Context" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page import="javax.naming.InitialContext" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
+    <%
+        try {
+            Context context = new InitialContext();
+            DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
+            ds.getConnection();
+
+            System.out.println("DB연동 성공");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    %>
+
 </head>
 <body>
 <h1>리뷰작성</h1>

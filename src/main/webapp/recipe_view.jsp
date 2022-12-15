@@ -77,16 +77,48 @@
             align-items: center;
             margin: 10px;
         }
+        body{
+            width: 80%;
+            margin: 0 auto;
+        }
+        .recipe_do_span{
+            margin: 30px;
+            font-size: 25px;
+        }
+        .recipe_name_div{
 
+            border: solid 1px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .recipe_name{
+            font-size: 35px;
+            width: 50%;
+            text-align: center;
+        }
+
+        .recipe_favorite{
+
+            font-size: 60px;
+            margin: 10px;
+
+        }
+        .recipe_img{
+            min-width: 200px;
+            max-width: 250px;
+        }
     </style>
 </head>
 <body>
 <h1>거꾸로 레시피</h1>
 
-<div>
+<div class="recipe_name_div">
 
-    <span><%=request.getParameter("food_name")%></span>
-    <span style="font-size: 30px">☆</span>
+    <span class="recipe_name" ><%=request.getParameter("food_name")%></span>
+    <span class="recipe_favorite" >☆</span>
 </div>
 <div>
 
@@ -108,12 +140,15 @@
                 break;
             }%>
     <div class="recipe_do">
-        <img src=<%=rows.get(get_img)%> >
-        <span><%=rows.get(gets)%></span>
+        <img class="recipe_img" src=<%=rows.get(get_img)%> >
+        <span class="recipe_do_span"><%=rows.get(gets)%></span>
     </div>
         <%}%>
 </div>
-<button onclick="location.href='review.jsp'">리뷰 남기러 가기</button>
+<form action="review.jsp">
+    <input name="food_name" type="text" style="display: none">
+    <input type="submit">리뷰 남기러 가기</input>
+</form>
 <button onclick="history.back()">뒤로가기</button>
 </body>
 </html>

@@ -19,6 +19,9 @@
           <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
           <element id="library" level="project" name="Maven: junit:junit:4.10" />
           <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.1" />
+          <element id="library" level="project" name="Maven: com.mysql:mysql-connector-j:8.0.31" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.19.4" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.30" />
         </element>
       </element>
       <element id="directory" name="META-INF">
