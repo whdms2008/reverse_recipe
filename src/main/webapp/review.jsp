@@ -1,21 +1,11 @@
 <%@ page import="javax.naming.Context" %>
 <%@ page import="javax.sql.DataSource" %>
 <%@ page import="javax.naming.InitialContext" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<% request.setCharacterEncoding("utf-8"); %>
 <html>
 <head>
     <title>Title</title>
-    <%
-        try {
-            Context context = new InitialContext();
-            DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
-            ds.getConnection();
-
-            System.out.println("DB연동 성공");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    %>
 
 </head>
 <body>
@@ -51,12 +41,12 @@
         height: 50px;
     }
 </style>
-<input type="text" name="menu">
-<textarea placeholder="내용을 입력해주세요" name="text"></textarea>
-<form action="">
+<form action="add_review">
+    <input type="text" name="menu" value=<%= request.getParameter("food_name") %>>
+    <textarea placeholder="내용을 입력해주세요" name="text"></textarea>
 
+    <input type="submit" value="리뷰등록">
 </form>
-<button onclick="register()">리뷰등록</button>
 
 <button onclick="history.back()">뒤로가기</button>
 <script>

@@ -58,7 +58,10 @@
     if (session.getAttribute("username") != null) {
 %>
 <div id="account">
-    <a class="logout" href="index.jsp" onclick="<%session.invalidate();%>">로그아웃</a>
+<%--    <a class="logout" href="index.jsp" onclick="<%session.invalidate();%>">로그아웃</a>--%>
+    <form action="logoutSession" method="post">
+        <input type="submit" class="logout" value="로그아웃" >
+    </form>
 </div>
 <%} else {%>
 

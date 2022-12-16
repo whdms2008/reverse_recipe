@@ -158,6 +158,9 @@
             jsonObject2 = new JSONObject((Map) o);
     %>
     <form action="recipe_view.jsp" onclick="this.submit()">
+    <form action="recipe_view.jsp" onclick="this.submit()">
+<%--    <form action="favorite" method="post" onclick="this.submit()">--%>
+
 
         <input name="food_name" type="text" style="display: none"
                value='<%= jsonObject2.get("RCP_NM").toString().replace(" ","_")%>'>

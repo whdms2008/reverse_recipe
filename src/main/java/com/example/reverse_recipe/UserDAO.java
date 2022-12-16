@@ -2,10 +2,15 @@ package com.example.reverse_recipe;
 
 import com.mysql.cj.Session;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Base64;
 
 public class UserDAO {
     private Connection conn;
@@ -58,17 +63,63 @@ public class UserDAO {
         }
         return -1; //DB 오류
     }
-
-    public int favorite(String food_name, String username){
-        String SQL = "SELECT recipe_name FROM favorite WHERE username = ?";
+    public int favorite_chk(HttpServletRequest req) throws UnsupportedEncodingException {
+        req.setCharacterEncoding("UTF-8");
+        HttpSession session = req.getSession();
+        String username = session.getAttribute("username").toString();
+        String food_name = req.getParameter("food_name");
+        System.out.println("favorite : " + food_name);
+        String insert_SQL = "INSERT INTO favorite_recipe(recipe_name, user_username) VALUES(?, ?)";
+        // INSERT INTO favorite_recipe(recipe_name, user_username) VALUES('a','whdms1107');
+        String del_QSL = "DELETE FROM favorite_recipe WHERE user_username = ? and recipe_name = ?";
+        String SQL = "SELECT recipe_name FROM favorite_recipe WHERE user_username = ? and recipe_name = ?";
+        System.out.println(food_name + " , " + username);
         try {
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, username);
+            pstmt.setString(2, food_name);
             rs = pstmt.executeQuery();
             if (rs.next()) {
-                if (rs.getString(1).equals(food_name))
+                if (rs.getString(1).equals(food_name)) {
                     return 1; // 값 있음
+                }
             }
+            return 0; // 값 없음
+        }catch(Exception e) {
+            e.printStackTrace();
+
+        }
+        return -2; //DB 오류
+    }
+    public int favorite(HttpServletRequest req) throws UnsupportedEncodingException {
+        req.setCharacterEncoding("UTF-8");
+        HttpSession session = req.getSession();
+        String username = session.getAttribute("username").toString();
+        String food_name = req.getParameter("food_name");
+        System.out.println("favorite : " + food_name);
+        String insert_SQL = "INSERT INTO favorite_recipe(recipe_name, user_username) VALUES(?, ?)";
+        String del_QSL = "DELETE FROM favorite_recipe WHERE user_username = ? and recipe_name = ?";
+        String SQL = "SELECT recipe_name FROM favorite_recipe WHERE user_username = ? and recipe_name = ?";
+        System.out.println(food_name + " , " + username);
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, username);
+            pstmt.setString(2, food_name);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                if (rs.getString(1).equals(food_name)) {
+                    pstmt = conn.prepareStatement(del_QSL);
+                    pstmt.setString(1, username);
+                    pstmt.setString(2, food_name);
+                    pstmt.executeUpdate();
+                    System.out.println(rs.getString(1).equals(food_name));
+                    return 1; // 값 있음
+                }
+            }
+            pstmt = conn.prepareStatement(insert_SQL);
+            pstmt.setString(1, food_name);
+            pstmt.setString(2, username);
+            pstmt.executeUpdate();
             return 0; // 값 없음
         }catch(Exception e) {
             e.printStackTrace();

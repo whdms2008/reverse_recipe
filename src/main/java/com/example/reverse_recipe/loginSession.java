@@ -12,6 +12,10 @@ import java.io.IOException;
 public class loginSession extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+        req.setCharacterEncoding("UTF-8");
+
         UserDAO dao = new UserDAO();
         int result = dao.login(req.getParameter("username"), req.getParameter("password"));
         if(result == 1){
