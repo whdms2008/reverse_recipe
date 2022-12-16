@@ -1,5 +1,7 @@
 package com.example.reverse_recipe;
 
+import com.mysql.cj.Session;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -55,5 +57,23 @@ public class UserDAO {
 
         }
         return -1; //DB 오류
+    }
+
+    public int favorite(String food_name, String username){
+        String SQL = "SELECT recipe_name FROM favorite WHERE username = ?";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, username);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                if (rs.getString(1).equals(food_name))
+                    return 1; // 값 있음
+            }
+            return 0; // 값 없음
+        }catch(Exception e) {
+            e.printStackTrace();
+
+        }
+        return -2; //DB 오류
     }
 }

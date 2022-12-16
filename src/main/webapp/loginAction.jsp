@@ -18,27 +18,18 @@
 <jsp:getProperty name="user" property="password"/>
 <% // ---> 2.
     PrintWriter script = response.getWriter();
-    if (user.getUsername() == null || user.getPassword() == null) {
+    if(session.getAttribute("username") != null){
+        System.out.println(session.getAttribute("username"));
+
         script.println("<script>");
-        script.println("alert('입력이 안 된 사항이 있습니다.')");
+        script.println("alert('로그인이 되었습니다.')");
+        script.println("</script>");
+    }else {
+
+        script.println("<script>");
+        script.println("alert('아이디 또는 비밀번호가 올바르지 않습니다!')");
         script.println("history.back()");
         script.println("</script>");
-    } else {
-        UserDAO us = new UserDAO();
-        int result = us.login(user.getUsername(), user.getPassword());
-        if (result == 1) {
-
-            script.println("<script>");
-            script.println("alert('로그인 성공!')");
-            script.println("history.back()");
-            script.println("</script>");
-        } else {
-
-            script.println("<script>");
-            script.println("alert('아이디 또는 비밀번호가 올바르지 않습니다!')");
-            script.println("history.back()");
-            script.println("</script>");
-        }
     }
 %>
 </body>

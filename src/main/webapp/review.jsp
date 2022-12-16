@@ -51,11 +51,14 @@
         height: 50px;
     }
 </style>
-<INPUT type="text" name="menu">
-<TEXTAREA placeholder="내용을 입력해주세요" name="text"></TEXTAREA>
+<input type="text" name="menu">
+<textarea placeholder="내용을 입력해주세요" name="text"></textarea>
+<form action="">
+
+</form>
 <button onclick="register()">리뷰등록</button>
 
-<button onclick="location.href='index.jsp'">뒤로가기</button>
+<button onclick="history.back()">뒤로가기</button>
 <script>
    function register(){
         alert('리뷰가 등록되었습니다');
