@@ -1,4 +1,3 @@
-<%@ page import="com.example.reverse_recipe.Add_Ingredient" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -38,17 +37,23 @@
         }
 
     </script>
-    <%--    <%! String[] ingredients = {"","","","","","","","","",""};--%>
-    <%--        public void add_ingredient(String ingredient, int index){--%>
-    <%--            ingredients[index] = ingredient;--%>
-    <%--        };--%>
-
-    <%--    %>--%>
+    <style>
+        #account {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: nowrap;
+            flex-direction: row-reverse;
+        }
+        #account > a {
+            margin : 10px;
+        }
+    </style>
 </head>
 <body>
 <div id="account">
-    <a class="register" href="">회원가입</a>
-    <a class="login" href="">로그인</a>
+    <a class="register" href="register_view.jsp">회원가입</a>
+    <a class="login" href="login_view.jsp">로그인</a>
 </div>
 
 <h1 class="title">거꾸로 레시피</h1>

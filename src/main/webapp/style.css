@@ -9,15 +9,21 @@
     font-family: "S-CoreDream-3Light", serif;
 }
 
+a {
+    text-decoration: none;
+}
+#account {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+}
+
 body {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-}
-
-#account {
-    float: right
-
 }
 
 
