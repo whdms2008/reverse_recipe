@@ -1,16 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: whdms
-  Date: 2022-12-16
-  Time: 오후 3:42
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>예제 grade</title>
+  <title></title>
   <style>
     @font-face {
       font-family: 'S-CoreDream-3Light';
@@ -32,23 +25,31 @@
     }
     h1{
       text-align: center;
+      border: 5px black solid;
     }
     input{
       margin: 15px;
-      width: 200px;
+      width: 300px;
+      height: 40px;
+    }
+    #login_go{
+      width: 300px;
+      height: 40px;
     }
   </style>
 </head>
 <body>
-<h1>거꾸로 레시피 - 로그인</h1>
-<form method=post action=loginSession>
+<h1>거꾸로 레시피</h1>
+<form name=student method=post action=loginSession>
   <div id="register_div">
-    <label for="username">아이디 : </label>
+    <p>< 로그인 ></p>
+    <label for="username">아이디</label>
     <input id="username" type="text" name="username">
 
-    <label for="password">비밀번호 : </label>
+    <label for="password">비밀번호</label>
     <input id="password" type="password" name="password">
-    <input type="submit" value="가입하기">
+
+    <input id="login_go" type="submit" value="로그인 하기">
   </div>
 </form>
 </body>
