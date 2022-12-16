@@ -4,7 +4,6 @@ public class useBean {
     private String username;
     private String email;
     private String password;
-    private String create_time;
 
 
     public String getUsername() {
@@ -24,9 +23,6 @@ public class useBean {
     }
     public String getEmail() {
         return this.email;
-    }
-    public String getCreate_time(){
-        return this.create_time;
     }
 }
 

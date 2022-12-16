@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ page import="java.io.PrintWriter" %>
 <%@ page import="com.example.reverse_recipe.UserDAO" %>
+<%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.Objects" %>
-<% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="user" class="com.example.reverse_recipe.useBean" scope="page"/>
 <jsp:setProperty name="user" property="*"/>
 <!DOCTYPE html>
 <html>
 <head>
+    <% request.setCharacterEncoding("UTF-8");%>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>JSP 게시판 웹 사이트</title>
 </head>
