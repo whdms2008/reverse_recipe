@@ -147,7 +147,7 @@
 </div>
 <form action="review.jsp">
     <input name="food_name" type="text" style="display: none">
-    <input type="submit" value="리뷰 남기러 가기<">
+    <input type="submit" value="리뷰 남기러 가기">
 </form>
 <button onclick="history.back()">뒤로가기</button>
 </body>

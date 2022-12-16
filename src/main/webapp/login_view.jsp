@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.io.PrintWriter" %><%--
   Created by IntelliJ IDEA.
   User: whdms
   Date: 2022-12-16
@@ -41,7 +41,19 @@
 </head>
 <body>
 <h1>거꾸로 레시피 - 로그인</h1>
-<form name=student method=post action=loginAction.jsp>
+<%
+
+  PrintWriter script = response.getWriter();
+  if(session.getAttribute("username") != null){
+    System.out.println(session.getAttribute("username"));
+
+    script.println("<script>");
+    script.println("alert('로그인이 되었습니다.')");
+    script.println("location.href='index.jsp'");
+    script.println("</script>");
+  }
+%>
+<form method="post" action="loginSession">
   <div id="register_div">
     <label for="username">아이디 : </label>
     <input id="username" type="text" name="username">

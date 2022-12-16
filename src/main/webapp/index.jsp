@@ -28,7 +28,7 @@
                     }
                     preivew.appendChild(ingredient);
 
-                }else{
+                } else {
                     alert("재료를 입력해주세요!");
                 }
             } else {
@@ -45,16 +45,30 @@
             flex-wrap: nowrap;
             flex-direction: row-reverse;
         }
+
         #account > a {
-            margin : 10px;
+            margin: 10px;
         }
     </style>
 </head>
 <body>
+<%
+%>
+<%
+    if (session.getAttribute("username") != null) {
+%>
+<div id="account">
+    <a class="logout" href="index.jsp" onclick="<%session.invalidate();%>">로그아웃</a>
+</div>
+<%} else {%>
+
 <div id="account">
     <a class="register" href="register_view.jsp">회원가입</a>
     <a class="login" href="login_view.jsp">로그인</a>
 </div>
+<%
+    }
+%>
 
 <h1 class="title">거꾸로 레시피</h1>
 <div id="main_wrap">
