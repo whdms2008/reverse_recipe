@@ -41,7 +41,7 @@
 </head>
 <body>
 <h1>거꾸로 레시피 - 로그인</h1>
-<form name=student method=post action=loginAction.jsp>
+<form method=post action=loginSession>
   <div id="register_div">
     <label for="username">아이디 : </label>
     <input id="username" type="text" name="username">

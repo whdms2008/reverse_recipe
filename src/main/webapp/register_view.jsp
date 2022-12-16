@@ -36,7 +36,7 @@
 </head>
 <body>
 <h1>거꾸로 레시피</h1>
-<form name=student method=post action=joinAction.jsp>
+<form  onsubmit="return test()" method=post action=joinAction.jsp>
   <div id="register_div">
     <p>< 회원가입 ></p>
     <label for="username">아이디</label>
@@ -47,14 +47,14 @@
     <input id="password_chk" type="password" name="password_chk">
     <label for="email">이메일</label>
     <input id="email" type="email" name="email">
-    <input type="submit" value="가입하기">
+    <input type="submit"  value="가입하기">
   </div>
 </form>
 <script>
   function test() {
     var p1 = document.getElementById('password').value;
     var p2 = document.getElementById('password_chk').value;
-    if( p1 != p2 ) {
+    if( p1 !== p2 ) {
       alert("비밀번호가 일치 하지 않습니다");
       return false;
     } else{
