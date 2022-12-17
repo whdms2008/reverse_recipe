@@ -38,6 +38,34 @@
 
     </script>
     <style>
+        input[type="button"] {
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            background-color: #4CAF50;
+
+            /* Add some hover effects */
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+        }
+
+        input[type="button"]:hover {
+            background-color: #3e8e41;
+        }
+
+        input[type="button"]:active {
+            transform: translateY(4px);
+        }
+
         #account {
             display: flex;
             justify-content: flex-start;
@@ -58,9 +86,9 @@
     if (session.getAttribute("username") != null) {
 %>
 <div id="account">
-<%--    <a class="logout" href="index.jsp" onclick="<%session.invalidate();%>">로그아웃</a>--%>
+    <input type="button" onclick="location.href='preview_page.jsp'" class="logout" value="마이페이지">
     <form action="logoutSession" method="post">
-        <input type="submit" class="logout" value="로그아웃" >
+        <input style="background:red" type="button" class="logout" value="로그아웃">
     </form>
 </div>
 <%} else {%>
@@ -72,7 +100,6 @@
 <%
     }
 %>
-
 <h1 class="title">거꾸로 레시피</h1>
 <div id="main_wrap">
 

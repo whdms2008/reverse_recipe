@@ -1,3 +1,4 @@
+<%@ page import="com.example.reverse_recipe.UserDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,37 +14,93 @@
         * {
             font-family: "S-CoreDream-3Light", serif;
         }
-        h1{
-            text-align : center;
-            border:5px black solid;
-        }
-        table{
-            text-align: center;
 
+        h1 {
+            text-align: center;
         }
-        button{
-            float:right;
-            width:100px;
-            height: 50px;
+
+        .favorite {
+            border-color: red;
+        }
+
+        .favorites {
+            width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-direction: column;
+            align-content: space-around;
+            border: solid 1px;
+            border-radius: 15px;
+            padding-bottom: 30px;
+        }
+
+        .review, .favorite {
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .favorite{
+            border-color: red;
+        }
+        .reviews {
+            width: 50%;
+            height: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-direction: column;
+            align-content: space-around;
+            border: solid 1px;
+            border-radius: 15px;
+            padding-bottom: 30px;
+            align-items: center;
+        }
+        .favorites {
+            width: 50%;
+            display: flex;
+            height: 50%;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-direction: column;
+            align-content: space-around;
+            border: solid 1px;
+            border-radius: 15px;
+            padding-bottom: 30px;
+        }
+
+        .review p, .favorite p {
+            margin: 0;
+        }
+        #write_review_and_favorite_review {
+            display: flex;
+            align-items: center;
+        }
+        .main_menu_btn{
+            width: 50%;
+            color: white;
+            border: 1px solid #ccc;
+            background: gray;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            box-shadow: 2px 2px 5px rgb(0 0 0 / 10%);
+        }
+        .main_menu_btn:hover{
+            cursor: pointer;
+            background: #c7c7c7;
         }
     </style>
 </head>
-<body>
-<h1>거꾸로 레시피</h1>
-<button onclick="location='index.jsp'">처음으로</button>
-<table border=1 width="100%">
-    <tr>
-        <th>내가 작성한 리뷰</th>
-        <th>즐겨찾기한 레시피</th>
-    </tr>
-    <tr>
-        <td>육개장</td>
-        <td>계란말이</td>
-    </tr>
-    <tr>
-        <td>육개장</td>
-        <td>계란말이</td>
-    </tr>
-</table>
+<body id="write_review_and_favorite_review">
+<% UserDAO dao = new UserDAO();
+    dao.write_review(request, response);
+%>
+<% dao = new UserDAO();
+    dao.write_favorite_review(request, response);
+%>
 </body>
 </html>

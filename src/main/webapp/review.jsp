@@ -41,14 +41,14 @@
         height: 50px;
     }
 </style>
-<form action="add_review">
-    <input type="text" name="menu" value=<%= request.getParameter("food_name") %>>
-    <textarea placeholder="내용을 입력해주세요" name="text"></textarea>
+<form action="add_review" method="post" onsubmit="alert('리뷰 작성완료')" >
+    <input type="text" name="food_name" value=<%= request.getParameter("food_name") %>>
+    <textarea placeholder="내용을 입력해주세요" name="review_content"></textarea>
 
     <input type="submit" value="리뷰등록">
 </form>
 
-<button onclick="history.back()">뒤로가기</button>
+<button onclick="location.href='index.jsp'">메인화면</button>
 <script>
    function register(){
         alert('리뷰가 등록되었습니다');
