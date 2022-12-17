@@ -16,7 +16,7 @@ import org.json.simple.JSONArray;
 @WebServlet("/add_review")
 public class add_review extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         UserDAO dao = new UserDAO();
         if(dao.add_review(req) == 1){
             resp.sendRedirect("recipe_view.jsp?food_name=" + URLEncoder.encode(req.getParameter("food_name")));

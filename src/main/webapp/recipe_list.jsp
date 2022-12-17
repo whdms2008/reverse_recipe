@@ -83,6 +83,7 @@
         }
     </style>
     <h1 id="title">거꾸로 레시피</h1>
+    <button style="width: 100%;font-size: 30px;height: 60px;" onclick="location.href='index.jsp'">메인화면</button>
 </head>
 <body>
 <%! String result = "";
@@ -133,10 +134,8 @@
                 url_add.append("&");
             }
             url = new URL("http://openapi.foodsafetykorea.go.kr/api/" + key + "/" + serviceId + "/" + dataType + "/" + startIdx + "/" + endIdx + "/" + url_add);
-            System.out.println(url);
         } catch (Exception e) {
             url = new URL("http://openapi.foodsafetykorea.go.kr/api/" + key + "/" + serviceId + "/" + dataType + "/" + startIdx + "/" + endIdx);
-            System.out.println(url);
         }
         // http://openapi.foodsafetykorea.go.kr/api/93015fe6a0fa49d9a7da/COOKRCP01/json/1/10
         BufferedReader bf;
@@ -158,7 +157,7 @@
             jsonObject2 = new JSONObject((Map) o);
     %>
     <form action="recipe_view.jsp" onclick="this.submit()">
-    <form action="recipe_view.jsp" onclick="this.submit()">
+<%--    <form action="recipe_view.jsp" onclick="this.submit()">--%>
 <%--    <form action="favorite" method="post" onclick="this.submit()">--%>
 
 

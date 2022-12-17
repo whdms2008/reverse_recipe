@@ -36,7 +36,7 @@
         }
 
         .review, .favorite {
-            width: 50%;
+            width: 20%;
             border: 1px solid #ccc;
             border-radius: 5px;
             margin: 10px;
@@ -48,7 +48,7 @@
         }
         .reviews {
             width: 50%;
-            height: 50%;
+            height: 80%;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -62,7 +62,7 @@
         .favorites {
             width: 50%;
             display: flex;
-            height: 50%;
+            height: 80%;
             flex-wrap: wrap;
             justify-content: center;
             flex-direction: column;
@@ -75,6 +75,17 @@
         .review p, .favorite p {
             margin: 0;
         }
+        
+        .review:hover{
+            cursor: pointer;
+            background: #d3d3d3;
+        }
+
+        .favorite:hover{
+            cursor: pointer;
+            background: #d3d3d3;
+        }
+        
         #write_review_and_favorite_review {
             display: flex;
             align-items: center;

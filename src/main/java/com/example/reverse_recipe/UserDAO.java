@@ -152,7 +152,6 @@ public class UserDAO {
             return 1; // 값 없음
         } catch (Exception e) {
             e.printStackTrace();
-
         }
         return -2; //DB 오류
     }
@@ -171,9 +170,12 @@ public class UserDAO {
             out.write("<div class='reviews'>");
             out.write("<h1>내가 작성한 리뷰</h1>");
             while (rs.next()) {
-                out.println("<div class='review'>");
+                // recipe_view.jsp?food_name=나가사키부대찌개
+                // location.href=\"recipe_view.jsp?food_name=새우_두부_계란찜\"
+                out.println("<div onclick="+ "location.href=\"recipe_view.jsp?food_name="+rs.getString("recipe_name")+ "\"" +" class='review'");
+
                 out.println("<p class='review-title'>" + rs.getString("recipe_name") + "</p>");
-                out.println("<p calss='review-text'>" + rs.getString("content") + "</p>");
+                out.println("<p class='review-text'>" + rs.getString("content") + "</p>");
                 out.println("</div>");
             }
             out.write("<div onclick="+ "location.href=\"index.jsp\"" +" class='main_menu_btn'>");
@@ -201,7 +203,8 @@ public class UserDAO {
             out.write("<h1>즐겨찾기 한 리뷰</h1>");
 
             while (rs.next()) {
-                out.println("<div class='favorite'>");
+                //out.println("<div onclick="+ "location.href=\"recipe_view.jsp?food_name="+rs.getString("recipe_name")+ "\"" +" class='review'");
+                out.println("<div onclick="+ "location.href=\"recipe_view.jsp?food_name="+rs.getString("recipe_name")+ "\"" +" class='favorite'");
                 out.println("<p class='favorite-title'>" + rs.getString("recipe_name") + "</p>");
                 out.println("</div>");
             }

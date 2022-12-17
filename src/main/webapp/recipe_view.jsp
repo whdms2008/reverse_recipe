@@ -149,7 +149,7 @@
         <input name="food_name" type="text" class="recipe_name" value=<%=request.getParameter("food_name")%>>
         <% if (chk == 0) { %>
         <input type="submit" class="recipe_favorite_no" value="☆">
-        <%} else if (chk== 1) { %>
+        <%} else if (chk == 1) { %>
         <input type="submit" class="recipe_favorite_yes" value="★">
         <%}%>
     </form>
@@ -179,10 +179,16 @@
     </div>
     <%}%>
 </div>
-<form action="review.jsp" >
-    <input name="food_name" type="text" style="display: none"  value=<%=request.getParameter("food_name")%>>
-    <input type="submit" value="리뷰 남기러 가기">
-</form>
-<button onclick="history.back()">뒤로가기</button>
+<div style="    display: flex;
+
+    justify-content: center;">
+
+    <form action="review.jsp">
+        <input name="food_name" type="text" style="display: none" value=<%=request.getParameter("food_name")%>>
+        <input style="    width: 200px;
+    height: 50px;" type="submit" value="리뷰 남기러 가기">
+    </form>
+    <button onclick="history.back()">뒤로가기</button>
+</div>
 </body>
 </html>
