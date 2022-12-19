@@ -38,7 +38,7 @@
 
     </script>
     <style>
-        input[type="button"] {
+        input[type="button"],input[type="submit"] {
             border: none;
             color: white;
             padding: 15px 32px;
@@ -46,7 +46,6 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            margin: 4px 2px;
             cursor: pointer;
             background-color: #4CAF50;
 
@@ -61,8 +60,14 @@
         input[type="button"]:hover {
             background-color: #3e8e41;
         }
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
 
         input[type="button"]:active {
+            transform: translateY(4px);
+        }
+        input[type="submit"]:active {
             transform: translateY(4px);
         }
 
@@ -88,7 +93,7 @@
 <div id="account">
     <input type="button" onclick="location.href='preview_page.jsp'" class="logout" value="마이페이지">
     <form action="logoutSession" method="post">
-        <input style="background:red" type="button" class="logout" value="로그아웃">
+        <input style="background:red" type="submit" class="logout" value="로그아웃">
     </form>
 </div>
 <%} else {%>

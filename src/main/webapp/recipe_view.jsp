@@ -111,7 +111,6 @@
 
         .recipe_name {
             font-size: 35px;
-            width: 50%;
             text-align: center;
         }
 

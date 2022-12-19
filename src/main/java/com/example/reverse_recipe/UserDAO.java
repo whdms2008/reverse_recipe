@@ -32,6 +32,20 @@ public class UserDAO {
         }
     }
 
+    public boolean isUsernameCorrect(String username) {
+        String SQL = "SELECT username FROM user WHERE username= ? ";
+        try {
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, username);
+            rs = pstmt.executeQuery();
+            // 아이디 없음
+            return !rs.next(); //아이디 있음
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false; //DB 오류
+    }
+
     public int login(String userID, String password) {
         String SQL = "SELECT password FROM user WHERE username = ?";
         try {
@@ -172,7 +186,7 @@ public class UserDAO {
             while (rs.next()) {
                 // recipe_view.jsp?food_name=나가사키부대찌개
                 // location.href=\"recipe_view.jsp?food_name=새우_두부_계란찜\"
-                out.println("<div onclick="+ "location.href=\"recipe_view.jsp?food_name="+rs.getString("recipe_name")+ "\"" +" class='review'");
+                out.println("<div onclick="+ "location.href=\"recipe_view.jsp?food_name="+rs.getString("recipe_name")+ "\"" +" class='review'>");
 
                 out.println("<p class='review-title'>" + rs.getString("recipe_name") + "</p>");
                 out.println("<p class='review-text'>" + rs.getString("content") + "</p>");
@@ -200,7 +214,7 @@ public class UserDAO {
             rs = pstmt.executeQuery();
             out.write("</div>");
             out.write("<div class='favorites'>");
-            out.write("<h1>즐겨찾기 한 리뷰</h1>");
+            out.write("<h1>즐겨찾기 한 레시피</h1>");
 
             while (rs.next()) {
                 //out.println("<div onclick="+ "location.href=\"recipe_view.jsp?food_name="+rs.getString("recipe_name")+ "\"" +" class='review'");

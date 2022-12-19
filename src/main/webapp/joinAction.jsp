@@ -18,23 +18,23 @@
 <jsp:getProperty name="user" property="password"/>
 <jsp:getProperty name="user" property="email"/>
 <% // ---> 2.
+
+    PrintWriter script = response.getWriter();
+    UserDAO userDAO = new UserDAO();
     if (user.getUsername() == null || user.getPassword() == null || user.getEmail() == null) {
-        PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("alert('입력이 안 된 사항이 있습니다.')");
         script.println("history.back()");
         script.println("</script>");
     } else {  // ---> 3.
-        UserDAO userDAO = new UserDAO();
+
         int result = userDAO.join(user);
         if (result == -1) {
-            PrintWriter script = response.getWriter();
             script.println("<script>");
             script.println("alert('이미 존재하는 아이디입니다.')");
             script.println("history.back()");
             script.println("</script>");
         } else {
-            PrintWriter script = response.getWriter();
             script.println("<script>");
             script.println("location.href = 'index.jsp'");
             script.println("</script>");

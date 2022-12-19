@@ -36,7 +36,10 @@
         }
 
         .review, .favorite {
-            width: 20%;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            width: 30%;
             border: 1px solid #ccc;
             border-radius: 5px;
             margin: 10px;
@@ -103,6 +106,14 @@
         .main_menu_btn:hover{
             cursor: pointer;
             background: #c7c7c7;
+        }
+        .review-title{
+            font-weight: bold;
+            font-size: 25px;
+            border-bottom: solid 1px;
+            color: #333;
+            text-align: center;
+            margin: 20px 0;
         }
     </style>
 </head>
